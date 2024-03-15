@@ -32,20 +32,20 @@ function App() {
           const $contents = document.querySelectorAll("div[class*='AnswerCard_answer-content']");
           const $imgsBlur = document.querySelectorAll<HTMLImageElement>("img[style='filter: blur(10px);']");
 
-          $listFreeBanner.forEach((item) => {
-            item.classList.add("hidden");
+          $listFreeBanner?.forEach((item) => {
+            item?.classList.add("hidden");
           });
 
-          $imgsBlur.forEach((item) => {
-            item.classList.add("no-blur");
+          $imgsBlur?.forEach((item) => {
+            item?.classList.add("no-blur");
           });
 
-          $listBanner.forEach((item) => {
-            item.classList.add("hidden");
+          $listBanner?.forEach((item) => {
+            item?.classList.add("hidden");
           });
 
-          $contents.forEach((item) => {
-            const $section = item.querySelector("section");
+          $contents?.forEach((item) => {
+            const $section = item?.querySelector("section");
 
             $section?.classList.add("no-blur");
           });
