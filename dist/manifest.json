@@ -1,11 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "vite-ts-react-test",
+  "name": "unlocked-sites-answers-master",
   "version": "1.0",
   "description": "",
   "action": {
     "default_popup": "index.html"
   },
   "permissions": ["scripting", "tabs", "activeTab"],
-  "host_permissions": ["https://*/*", "http://*/*"]
+  "host_permissions": ["https://*/*", "http://*/*"],
+  "icons": {
+    "16": "logo.png",
+    "32": "logo.png"
+  }
 }

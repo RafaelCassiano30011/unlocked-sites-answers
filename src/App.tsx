@@ -1,36 +1,54 @@
 // import { useState } from 'react'
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { PasseiDiretoUnlocked } from "./utils/PasseiDiretoUnlocked";
 
 function App() {
   // const [count, setCount] = useState(0)
-  const changeColorOnClick = async () => {
+  const unlockedSite = async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     const location = new URL(tab?.url ?? "");
 
-    if (location.host !== "brainly.com.br" && location.host !== "passeidireto.com") return;
+    if (location.host !== "brainly.com.br" && location.host !== "www.passeidireto.com") return;
 
     chrome.scripting.executeScript({
       target: { tabId: tab.id! },
       func: () => {
         if (window.location.host === "brainly.com.br") {
           const $unlockedSection = document.querySelector("div[data-testid='unlock_section']");
-          const $content = document.querySelector(".AnswerBoxLayout-module__content--bMldb");
+          const $unlockedSectionLogin = document.querySelector("div[data-testid='answer_blockade_adapter']");
+          const $content = document.querySelector("div[data-testid='answer_box_options_list']")?.nextElementSibling;
           const $falseText = document.querySelector("div[data-testid='answer_box_below_blockade']");
 
-          console.log($content, "$unlockedSection");
-
           $unlockedSection?.classList.add("hidden");
+          $unlockedSectionLogin?.classList.add("hidden");
           $content?.classList.add("no-limitation");
-          $falseText?.classList.add("hidden")
+          $falseText?.classList.add("hidden");
 
           return;
         }
 
-        if (window.location.host === "passeidireto.com") {
-          PasseiDiretoUnlocked();
+        if (window.location.host === "www.passeidireto.com") {
+          const $listFreeBanner = document.querySelectorAll("div[class*='FreeTrialBanner_container']");
+          const $listBanner = document.querySelectorAll("div[class*='BannerSelector_banner-container']");
+          const $contents = document.querySelectorAll("div[class*='AnswerCard_answer-content']");
+          const $imgsBlur = document.querySelectorAll<HTMLImageElement>("img[style='filter: blur(10px);']");
+
+          $listFreeBanner.forEach((item) => {
+            item.classList.add("hidden");
+          });
+
+          $imgsBlur.forEach((item) => {
+            item.classList.add("no-blur");
+          });
+
+          $listBanner.forEach((item) => {
+            item.classList.add("hidden");
+          });
+
+          $contents.forEach((item) => {
+            const $section = item.querySelector("section");
+
+            $section?.classList.add("no-blur");
+          });
 
           return;
         }
@@ -65,25 +83,6 @@ function App() {
       `,
     });
   };
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => changeColorOnClick()}>Change Color</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
-  );
+  return <button onClick={unlockedSite}>Desbloquear</button>;
 }
 export default App;
