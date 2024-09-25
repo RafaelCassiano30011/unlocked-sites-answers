@@ -6,8 +6,7 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": ["scripting", "tabs", "activeTab"],
-  "host_permissions": ["https://*/*", "http://*/*"],
+  "permissions": ["scripting", "activeTab"],
   "icons": {
     "16": "logo.png",
     "32": "logo.png"

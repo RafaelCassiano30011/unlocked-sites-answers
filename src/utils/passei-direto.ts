@@ -5,8 +5,9 @@ export function unlockedPasseiDireto(id: number) {
       const listFreeBanner = document.querySelectorAll("div[class*='FreeTrialBanner_container']");
       const listBanner = document.querySelectorAll("div[class*='BannerSelector_banner-container']");
       const contents = document.querySelectorAll("div[class*='AnswerCard_answer-content']");
-      const imgsBlur = document.querySelectorAll<HTMLImageElement>("img[style='filter: blur(10px);']");
-      const divBlur = document.querySelectorAll<HTMLImageElement>("div[style='filter: blur(10px);']");
+      const imgsBlur = document.querySelectorAll<HTMLImageElement>("img[style*='blur']");
+      const divBlur = document.querySelectorAll<HTMLDivElement>("div[style*='blur']");
+      const divFreePaywall = document.querySelectorAll("*[data-testid='answer-paywall']");
 
       listFreeBanner?.forEach((item) => {
         item?.classList.add("hidden");
@@ -25,6 +26,12 @@ export function unlockedPasseiDireto(id: number) {
 
         $section?.classList.add("no-blur");
       });
+
+      if (divFreePaywall) {
+        divFreePaywall.forEach((item) => item.classList.add("hidden"));
+      }
     },
   });
 }
+
+

@@ -12,6 +12,13 @@ export function unlockedBrainly(id: number) {
 
       contents.forEach((item) => {
         item.nextElementSibling?.classList.add("no-limitation");
+        const $safeHtml = item.nextElementSibling?.querySelector("span[data-testid='safe_html']");
+
+        if ($safeHtml && $safeHtml?.textContent === "") {
+          const descriptionResponse = document.querySelector("#head-og-description")!;
+
+          $safeHtml.textContent = descriptionResponse!.getAttribute("content");
+        }
       });
 
       listFalseText.forEach((item) => {
