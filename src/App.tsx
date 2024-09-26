@@ -22,7 +22,7 @@ function App() {
       return chrome.scripting.executeScript({
         target: { tabId: tab.id! },
         func: () => {
-          alert(`Atualmente só funciona nos sites Brainly e Passei Direto`);
+          alert(`Currently it only works on the Brainly and Passei Direto websites`);
         },
       });
     }
@@ -65,14 +65,14 @@ function App() {
 
   return (
     <div className="container">
-      <button onClick={unlockedSite}>Desbloquear</button>
+      <button onClick={unlockedSite}>Unlocked</button>
 
       <span
         onClick={() => {
           setShowQrCode(true);
         }}
       >
-        Me Apoie! 🌟
+        Donate! 🌟
       </span>
 
       {showQrCode && (
