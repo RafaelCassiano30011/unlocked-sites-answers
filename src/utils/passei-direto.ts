@@ -8,6 +8,7 @@ export function unlockedPasseiDireto(id: number) {
       const imgsBlur = document.querySelectorAll<HTMLImageElement>("img[style*='blur']");
       const divBlur = document.querySelectorAll<HTMLDivElement>("div[style*='blur']");
       const divFreePaywall = document.querySelectorAll("*[data-testid='answer-paywall']");
+      const divFlashSales = document.querySelectorAll("*[data-testid='flash-sales-paywall']");
 
       listFreeBanner?.forEach((item) => {
         item?.classList.add("hidden");
@@ -30,8 +31,10 @@ export function unlockedPasseiDireto(id: number) {
       if (divFreePaywall) {
         divFreePaywall.forEach((item) => item.classList.add("hidden"));
       }
+
+      if (divFlashSales) {
+        divFlashSales.forEach((item) => item.classList.add("hidden"));
+      }
     },
   });
 }
-
-
